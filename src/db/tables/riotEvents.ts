@@ -16,7 +16,6 @@ export const riotEvents = pgTable("riot_events", {
   riotEventId: bigint("riot_event_id", { mode: "number" }).notNull(),
   eventName: varchar("event_name").notNull(),
   eventData: jsonb("event_data").notNull(),
-  receivedAt: timestamp("received_at").notNull().defaultNow(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 

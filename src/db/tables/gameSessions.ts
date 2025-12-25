@@ -17,7 +17,6 @@ const gameStatusEnum = pgEnum("game_status", enumToPgEnum(GameStatus));
 
 export const gameSessions = pgTable("game_sessions", {
   id: uuid("id").primaryKey().defaultRandom(),
-  riotGameId: bigint("riot_game_id", { mode: "number" }).notNull(),
   status: gameStatusEnum("status").notNull(),
   startedAt: timestamp("started_at").notNull().defaultNow(),
   endedAt: timestamp("ended_at"),

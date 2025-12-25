@@ -1,0 +1,1 @@
+ALTER TABLE "riot_events" DROP COLUMN "received_at";

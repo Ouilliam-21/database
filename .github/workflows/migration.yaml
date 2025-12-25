@@ -1,0 +1,50 @@
+name: Database Migration
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    migrate:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Install mise
+              uses: jdx/mise-action@v2
+              with:
+                  install: true
+
+            - name: Install dependencies
+              run: mise exec -- bun install
+
+            - name: Generate migrations
+              run: mise exec -- bun run db:generate
+              env:
+                  DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+                  DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
+                  DATABASE_USER: ${{ secrets.DATABASE_USER }}
+                  DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+                  DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+
+            - name: Run migrations
+              run: mise exec -- bun run db:migrate
+              env:
+                  DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+                  DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
+                  DATABASE_USER: ${{ secrets.DATABASE_USER }}
+                  DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+                  DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+
+            - name: Commit migration files
+              if: success()
+              run: |
+                  git config --local user.email "github-actions[bot]@users.noreply.github.com"
+                  git config --local user.name "github-actions[bot]"
+                  git add drizzle/
+                  git diff --staged --quiet || git commit -m "chore: update database migrations [skip ci]"
+                  git push
+              working-directory: .
