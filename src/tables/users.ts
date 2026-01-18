@@ -1,5 +1,5 @@
 import { bigint, integer, pgEnum, pgTable, text } from "drizzle-orm/pg-core";
-import { enumToPgEnum } from "../utils/drizzle";
+import { enumToPgEnum } from "../utils/drizzle.js";
 
 export enum UserRole {
   ADMIN = "admin",

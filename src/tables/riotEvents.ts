@@ -6,8 +6,7 @@ import {
   timestamp,
   varchar,
 } from "drizzle-orm/pg-core";
-import { gameSessions } from "./gameSessions";
-
+import { gameSessions } from "./gameSessions.js";
 export const riotEvents = pgTable("riot_events", {
   id: uuid("id").primaryKey().defaultRandom(),
   gameSessionId: uuid("game_session_id")

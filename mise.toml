@@ -10,5 +10,8 @@ run = "bun run db:generate"
 [tasks.migrate]
 run = "bun run db:migrate"
 
+[tasks.build]
+run = "bun run build"
+
 [tasks.publish]
 run = "bun run build && bun publish"

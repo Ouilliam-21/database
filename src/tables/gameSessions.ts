@@ -5,7 +5,7 @@ import {
   timestamp,
   pgEnum,
 } from "drizzle-orm/pg-core";
-import { enumToPgEnum } from "../utils/drizzle";
+import { enumToPgEnum } from "../utils/drizzle.js";
 
 export enum GameStatus {
   PLAYED = "PLAYED",

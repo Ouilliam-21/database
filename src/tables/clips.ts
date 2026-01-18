@@ -4,8 +4,7 @@ import {
     uuid
 } from "drizzle-orm/pg-core";
 
-import { enumToPgEnum } from "../utils/drizzle";
-
+import { enumToPgEnum } from "../utils/drizzle.js";
 export enum Lang {
     FR = "FR",
     EN = "EN",
