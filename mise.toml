@@ -1,2 +1,14 @@
 [tools]
 bun = "latest"
+
+[env]
+_.file = '.env'
+
+[tasks.generate]
+run = "bun run db:generate"
+
+[tasks.migrate]
+run = "bun run db:migrate"
+
+[tasks.publish]
+run = "bun run build && bun publish"

@@ -1,9 +1,29 @@
 {
-  "name": "database",
-  "module": "index.ts",
+  "name": "@Ouilliam-21/database",
+  "version": "0.0.2",
+  "description": "Database for Ouilliam",
+  "author": "MichelProgram",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ouilliam-21/database.git"
+  },
   "type": "module",
-  "private": true,
+  "private": false,
+  "main": "./dist/schema.js",
+  "types": "./dist/schema.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/schema.d.ts",
+      "import": "./dist/schema.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
+    "build": "tsc",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio"
@@ -21,5 +41,8 @@
     "dotenv": "^17.2.3",
     "drizzle-orm": "^0.45.1",
     "pg": "^8.16.3"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }
