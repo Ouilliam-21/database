@@ -10,6 +10,9 @@ run = "bun run db:generate"
 [tasks.migrate]
 run = "bun run db:migrate"
 
+[tasks.studio]
+run = "bun run db:studio"
+
 [tasks.build]
 run = "bun run build"
 
