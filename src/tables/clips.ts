@@ -5,6 +5,8 @@ import {
 } from "drizzle-orm/pg-core";
 
 import { enumToPgEnum } from "../utils/drizzle.js";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+
 export enum Lang {
     FR = "FR",
     EN = "EN",
@@ -20,6 +22,9 @@ export const clips = pgTable("clips", {
     language: lanEnum("language").notNull(),
     createdAt: timestamp("created_at").notNull().defaultNow(),
 });
+
+export const insertClipsSchema = createInsertSchema(clips);
+export const selectClipsSchema = createSelectSchema(clips);
 
 export type Clips = typeof clips.$inferSelect;
 export type NewClips = typeof clips.$inferInsert;

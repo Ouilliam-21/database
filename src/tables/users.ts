@@ -1,5 +1,6 @@
 import { bigint, integer, pgEnum, pgTable, text } from "drizzle-orm/pg-core";
 import { enumToPgEnum } from "../utils/drizzle.js";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 export enum UserRole {
   ADMIN = "admin",
@@ -23,3 +24,9 @@ export const users = pgTable("users", {
   decorationAsset: text("decoration_asset"),
   decorationSkuId: text("decoration_sku_id"),
 });
+
+export const insertUserSchema = createInsertSchema(users);
+export const selectUserSchema = createSelectSchema(users);
+
+export type User = typeof users.$inferSelect;
+export type NewUser = typeof users.$inferInsert;

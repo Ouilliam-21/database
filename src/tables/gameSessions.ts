@@ -6,6 +6,7 @@ import {
   pgEnum,
 } from "drizzle-orm/pg-core";
 import { enumToPgEnum } from "../utils/drizzle.js";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 export enum GameStatus {
   PLAYED = "PLAYED",
@@ -23,6 +24,9 @@ export const gameSessions = pgTable("game_sessions", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
+
+export const insertGameSessionSchema = createInsertSchema(gameSessions);
+export const selectGameSessionSchema = createSelectSchema(gameSessions);
 
 export type GameSession = typeof gameSessions.$inferSelect;
 export type NewGameSession = typeof gameSessions.$inferInsert;

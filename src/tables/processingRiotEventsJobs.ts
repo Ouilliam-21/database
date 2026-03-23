@@ -9,6 +9,7 @@ import {
 } from "drizzle-orm/pg-core";
 import { enumToPgEnum } from "../utils/drizzle.js";
 import { riotEvents } from "./riotEvents.js";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 export enum ProcessingRiotEventStatus {
   PENDING = "PENDING",
@@ -42,6 +43,9 @@ export const processingRiotEventsJobs = pgTable("processing_riot_events_jobs", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
+
+export const insertProcessingJobSchema = createInsertSchema(processingRiotEventsJobs);
+export const selectProcessingJobSchema = createSelectSchema(processingRiotEventsJobs);
 
 export type ProcessingJob = typeof processingRiotEventsJobs.$inferSelect;
 export type NewProcessingJob = typeof processingRiotEventsJobs.$inferInsert;

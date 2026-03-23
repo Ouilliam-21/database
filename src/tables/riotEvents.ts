@@ -7,6 +7,8 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 import { gameSessions } from "./gameSessions.js";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+
 export const riotEvents = pgTable("riot_events", {
   id: uuid("id").primaryKey().defaultRandom(),
   gameSessionId: uuid("game_session_id")
@@ -17,6 +19,9 @@ export const riotEvents = pgTable("riot_events", {
   eventData: jsonb("event_data").notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
+
+export const insertRiotEventSchema = createInsertSchema(riotEvents);
+export const selectRiotEventSchema = createSelectSchema(riotEvents);
 
 export type RiotEvent = typeof riotEvents.$inferSelect;
 export type NewRiotEvent = typeof riotEvents.$inferInsert;

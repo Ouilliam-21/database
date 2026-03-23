@@ -4,3 +4,4 @@ export * from "./tables/processingRiotEventsJobs.js";
 export * from "./tables/users.js";
 export * from "./tables/config.js";
 export * from "./tables/clips.js";
+export * from "./schemas/discord-ws.schema.js";
