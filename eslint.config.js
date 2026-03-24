@@ -5,7 +5,7 @@ import drizzle from "eslint-plugin-drizzle";
 
 export default [
   {
-    ignores: ["dist/**", "node_modules/**", "drizzle/**", "eslint.config.js"],
+    ignores: ["dist/**", "node_modules/**", "drizzle/**", "eslint.config.js", "src/seed.ts"],
   },
   js.configs.recommended,
   {

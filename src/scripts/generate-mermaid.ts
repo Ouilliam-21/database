@@ -19,6 +19,8 @@ import {
   users,
 } from "../schema";
 
+import { URL } from "node:url";
+
 const TABLES = [
   users,
   config,
@@ -95,7 +97,9 @@ function generateErDiagram(): string {
     for (const uc of uniqueConstraints) {
       const ucCols = uc.columns as unknown as ColLike[];
       if (ucCols.length === 1) {
-        ukNames.add(ucCols[0].name);
+        if (ucCols[0]) {
+          ukNames.add(ucCols[0].name);
+        }
       }
     }
 
@@ -183,4 +187,3 @@ const markdown = [
 const outPath = new URL("../SCHEMA.md", import.meta.url);
 writeFileSync(outPath, markdown);
 
-console.log("✅  SCHEMA.md updated.");
