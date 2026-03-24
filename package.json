@@ -27,7 +27,7 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
-    "generate:schema": "bun scripts/generate-mermaid.ts",
+    "generate:schema": "bun /src/scripts/generate-mermaid.ts",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
