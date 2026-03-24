@@ -1,2 +1,2 @@
-export * from "./tables";
-export * from "./validators";
+export * from "./tables/index.js";
+export * from "./validators/index.js";
