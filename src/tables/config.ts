@@ -1,5 +1,5 @@
-import { enumToPgEnum } from "../utils/drizzle.js";
-import { pgTable, uuid, varchar, timestamp, pgEnum } from "drizzle-orm/pg-core";
+import { enumToPgEnum } from "../utils/drizzle";
+import { pgTable, uuid, timestamp, pgEnum, jsonb } from "drizzle-orm/pg-core";
 
 export enum GPUStatus {
   STARTING = "STARTING",
@@ -7,12 +7,20 @@ export enum GPUStatus {
   RUNNING = "RUNNING",
 }
 
-const gpuStatusEnum = pgEnum("gpu_status", enumToPgEnum(GPUStatus));
+export enum ConfigKey {
+  APP = "app",
+  DISCORD = "discord",
+}
+
+const configKeyEnum = pgEnum("config_key", enumToPgEnum(ConfigKey));
+
 export const config = pgTable("config", {
   id: uuid("id").primaryKey().defaultRandom(),
-  idDroplet: varchar("id_droplet"),
-  ip: varchar("ip"),
-  status: gpuStatusEnum("status").notNull(),
+  key: configKeyEnum("key").notNull().unique(),
+  value: jsonb("value").notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
+
+export type Config = typeof config.$inferSelect;
+export type NewConfig = typeof config.$inferInsert;
