@@ -7,8 +7,8 @@ import {
   varchar,
   decimal,
 } from "drizzle-orm/pg-core";
-import { enumToPgEnum } from "../utils/drizzle";
-import { riotEvents } from "./riotEvents";
+import { enumToPgEnum } from "../utils/drizzle.js";
+import { riotEvents } from "./riotEvents.js";
 
 export enum ProcessingRiotEventStatus {
   PENDING = "PENDING",

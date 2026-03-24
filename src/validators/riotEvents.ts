@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { createSelectSchema, createInsertSchema, createUpdateSchema } from "drizzle-zod";
-import { riotEvents } from "../tables/riotEvents";
+import { riotEvents } from "../tables/riotEvents.js";
 
 export const RiotEventSelectSchema = createSelectSchema(riotEvents);
 export type RiotEventSelect = z.infer<typeof RiotEventSelectSchema>;

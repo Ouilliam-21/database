@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { GPUStatus, ConfigKey } from "../tables/config";
+import { GPUStatus, ConfigKey } from "../tables/config.js";
 
 export const AppConfigValueSchema = z.object({
   idDroplet: z.string().nullable().optional(),
@@ -8,7 +8,11 @@ export const AppConfigValueSchema = z.object({
 });
 export type AppConfigValue = z.infer<typeof AppConfigValueSchema>;
 
-export const DiscordConfigValueSchema = z.record(z.string(), z.unknown());
+export const DiscordConfigValueSchema = z.object({
+  isConnected: z.boolean(),
+  channelId: z.string().nullable(),
+  channelName: z.string().nullable(),
+});
 export type DiscordConfigValue = z.infer<typeof DiscordConfigValueSchema>;
 
 const baseConfigFields = {

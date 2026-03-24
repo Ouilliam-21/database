@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { createSelectSchema, createInsertSchema, createUpdateSchema } from "drizzle-zod";
-import { gameSessions } from "../tables/gameSessions";
+import { gameSessions } from "../tables/gameSessions.js";
 
 export const GameSessionSelectSchema = createSelectSchema(gameSessions);
 export type GameSessionSelect = z.infer<typeof GameSessionSelectSchema>;

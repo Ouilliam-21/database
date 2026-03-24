@@ -1,4 +1,4 @@
-import { enumToPgEnum } from "../utils/drizzle";
+import { enumToPgEnum } from "../utils/drizzle.js";
 import { pgTable, uuid, timestamp, pgEnum, jsonb } from "drizzle-orm/pg-core";
 
 export enum GPUStatus {
