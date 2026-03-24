@@ -16,5 +16,20 @@ run = "bun run db:studio"
 [tasks.build]
 run = "bun run build"
 
+[tasks.seed]
+run = "bun run src/seed.ts"
+
 [tasks.publish]
 run = "bun run build && bun publish"
+
+[tasks.lint]
+description = "Run ESLint"
+run = "bun run lint"
+
+[tasks.typecheck]
+description = "Type-check with tsc --noEmit"
+run = "bun run typecheck"
+
+[tasks.schema]
+description = "Generate Mermaid ER diagram into SCHEMA.md"
+run = "bun run generate:schema"

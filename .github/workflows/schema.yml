@@ -1,0 +1,37 @@
+name: Generate Schema Diagram
+
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  schema:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Mise
+        uses: jdx/mise-action@v2
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Generate schema diagram
+        run: mise run generate:schema
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add SCHEMA.md
+          git diff --staged --quiet && echo "No changes to commit" && exit 0
+          git commit -m "docs: update schema diagram [skip ci]"
+          git push
