@@ -50,6 +50,13 @@
       "when": 1774377795422,
       "tag": "0009_clammy_tana_nile",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1774551530223,
+      "tag": "0010_previous_kingpin",
+      "breakpoints": true
     }
   ]
 }
